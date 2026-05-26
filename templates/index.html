@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Smart Document Analyzer</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 40px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #444;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0078ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005fd1;
+        }
+
+        select, input {
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        ul {
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Smart Document Analyzer</h1>
+
+        <form action="/analyze" method="POST" enctype="multipart/form-data">
+
+            <input type="file" name="document" required>
+
+            <br><br>
+
+            <label><b>Select Summary Length:</b></label>
+
+            <select name="word_limit">
+
+                <option value="50">50 Words</option>
+
+                <option value="100">100 Words</option>
+
+                <option value="200">200 Words</option>
+
+            </select>
+
+            <br><br>
+
+            <button type="submit">Analyze</button>
+
+        </form>
+
+        <hr>
+
+        <h2>Document Type</h2>
+
+        <p>{{ doc_type }}</p>
+
+        <h2>Summary</h2>
+
+        <p>{{ summary }}</p>
+
+        <h2>Entities</h2>
+
+        <ul>
+
+            {% for entity in entities %}
+
+            <li>{{ entity }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+        <h2>Anomalies</h2>
+
+        <ul>
+
+            {% for anomaly in anomalies %}
+
+            <li>{{ anomaly }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+</body>
+
+</html>
